@@ -75,7 +75,7 @@ void main(){
 
             break;
 
-     default :
+        default :
             clrscr();
             getch();
             printf("\n\t\t\t\t\tEnter a valid choice\n\n");
@@ -96,20 +96,21 @@ void main(){
      char or;
      FILE *fp;
      int n,i;
-     struct passInfo;
+     struct pass info;
 
    do{
        clrscr();
-       printf("\t\t\t\t=======Add Passanger Info=======\n\n\n");
+       printf("\t\t\t\t=======ADD PASSANGER INFO=======\n");
+       printf("\t\t\t\t____________________________________\n\n\n");
        fp=fopen("information.txt","a");
 
           printf("\n\t\t\tEnter First Name  : ");
-          scanf("%s",&pass.firstName);
+          scanf("%s",&info.firstName);
 
           printf("\n\t\t\tEnter NID number  : ");
-          scanf("%d",&pass.nidNo);
+          scanf("%lf",&info.nidNo);
           printf("\n\t\t\tEnter location    : ");
-          scanf("%s",&pass.loc);
+          scanf("%s",&info.loc);
 
           printf("\n\t\t\t______________________________\n");
 
@@ -137,11 +138,11 @@ void main(){
 
      FILE *fp;
 
-    structstruct passInfo;
+    struct pass info;
     fp=fopen("information.txt","r");
 
-     printf("\t\t\t\t===== RECORD =====\n\n\n");
-     printf("\t\t\t\t___________________n\n\n");
+     printf("\t\t\t\t===== RECORD(S) =====\n");
+     printf("\t\t\t\t_______________________n\n\n");
 
     if(fp==NULL){
 
@@ -153,15 +154,54 @@ void main(){
         printf("\t\t\t\t_________\n\n");
     }
 
-        while(fread(&pass,sizeof(struct pass),1,fp)){
+        while(fread(&info, sizeof(struct pass), 1, fp)){
 
-        printf("\n\t\t\t\t Name  : %s", pass.firstName);
-        printf("\n\t\t\t\t NID no   : %d", pass.nidNo);
-        printf("\n\t\t\t\t Location : %s",  pass.loc);
+        printf("\n\t\t\t\t Name  : %s", info.firstName);
+        printf("\n\t\t\t\t NID no   : %d", info.nidNo);
+        printf("\n\t\t\t\t Location : %s",  info.loc);
         printf("\n\t\t\t\t ________________________________\n");
 
-         }
+        }
         fclose(fp);
         getch();
 
   }
+
+void search(){
+
+      struct pass info;
+      FILE *fp;
+      double nidNo; int found = 0;
+
+        fp=fopen("information.txt", "r");
+        printf("\t\t\t\t=======SEARCH PASSANGER RECORD=======\n");
+        printf("\t\t\t\t_________________________________________");
+        printf("\t\t\tEnter NID number : ");
+        scanf("%lf",&nidNo);
+
+
+
+    while(fread(&info,sizeof(struct pass),1,fp)>0){
+
+        if(info.nidNo == nidNo){
+
+        found = 1;
+
+        printf("\n\n\t\t\tName     : %s",info.firstName);
+        printf("\n\t\t\tNID Number : %d",info.nidNo);
+        printf("\n\t\t\tLocation   : %s",info.loc);
+        printf("\n\t\t\t______________________________________\n");
+
+        }
+
+    }
+
+    if(!found){
+
+       printf("\n\t\t\tRecord not found. Sorry.\n");
+    }
+
+    fclose(fp);
+    getch();
+
+}
