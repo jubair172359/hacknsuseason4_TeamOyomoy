@@ -90,3 +90,78 @@ void main(){
     getch();
 
 }
+
+void addPass(){
+
+     char or;
+     FILE *fp;
+     int n,i;
+     struct passInfo;
+
+   do{
+       clrscr();
+       printf("\t\t\t\t=======Add Passanger Info=======\n\n\n");
+       fp=fopen("information.txt","a");
+
+          printf("\n\t\t\tEnter First Name  : ");
+          scanf("%s",&pass.firstName);
+
+          printf("\n\t\t\tEnter NID number  : ");
+          scanf("%d",&pass.nidNo);
+          printf("\n\t\t\tEnter location    : ");
+          scanf("%s",&pass.loc);
+
+          printf("\n\t\t\t______________________________\n");
+
+      if(fp==NULL){
+        fprintf(stderr,"Can't open your record file.");
+      }
+
+      else{
+        printf("\t\t\tYour record(s) has been stored successfully.\n");
+      }
+
+    fwrite(&pass, sizeof(struct pass), 1, fp);
+    fclose(fp);
+
+    printf("\t\t\tDo you want to add another record?(y/n) : ");
+
+
+    scanf("%s",&another);
+
+
+   }    while(or=='y'||or=='Y');
+}
+
+ void record(){
+
+     FILE *fp;
+
+    structstruct passInfo;
+    fp=fopen("information.txt","r");
+
+     printf("\t\t\t\t===== RECORD =====\n\n\n");
+     printf("\t\t\t\t___________________n\n\n");
+
+    if(fp==NULL){
+
+        fprintf(stderr, "Can't open your record file.");
+        exit(0);
+    }
+    else{
+        printf("\t\t\t\tRecord(s):\n");
+        printf("\t\t\t\t_________\n\n");
+    }
+
+        while(fread(&pass,sizeof(struct pass),1,fp)){
+
+        printf("\n\t\t\t\t Name  : %s", pass.firstName);
+        printf("\n\t\t\t\t NID no   : %d", pass.nidNo);
+        printf("\n\t\t\t\t Location : %s",  pass.loc);
+        printf("\n\t\t\t\t ________________________________\n");
+
+         }
+        fclose(fp);
+        getch();
+
+  }
