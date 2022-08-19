@@ -12,7 +12,7 @@ void delete();
   struct pass {
     char firstName[20];
     double nidNo;
-    char loc[10], fid[12];
+    char loc[10], fid[20];
 
 };
 
@@ -101,8 +101,8 @@ void main(){
 
    do{
 
-       printf("\t\t\t\t=====: ADD PASSANGER INFO :=====\n");
-       printf("\t\t\t\t____________________________________\n\n\n");
+       printf("\n\n\n\t\t\t\t=====: ADD PASSANGER INFO :=====\n");
+       printf("\t\t\t\t____________________________________\n\n");
        fp=fopen("information.txt","a");
 
           printf("\n\t\t\tEnter Name        : ");
@@ -112,7 +112,7 @@ void main(){
           printf("\n\t\t\tEnter location    : ");
           scanf("%s",&info.loc);
           printf("\n\n\t\t\tEnter your fingerprint ID in the following bar.");
-          printf("\n\t\t\t\t\t\t==========\n");
+          printf("\n\t\t\t\t\t\t==========\n\t\t\t\t\t");
           scanf("%s", &info.fid);
           printf("\n\t\t\t\t\t\t==========\n");
           printf("\n\t\t\t______________________________\n");
@@ -128,7 +128,7 @@ void main(){
     fwrite(&info, sizeof(struct pass), 1, fp);
     fclose(fp);
 
-    printf("\t\t\tDo you want to add another record? [y/n] : ");
+    printf("\n\n\t\t\tDo you want to add another record? [y/n] : ");
     scanf("%s", &or);
 
 
