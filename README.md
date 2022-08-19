@@ -4,42 +4,89 @@
 #include<stdlib.h>
 #include<windows.h>
 
-void addpass(){
-    char or;
-    char FILE *fp;
+void addpass();
+void record();
+void search();
+void delete();
 
-    struct pass;
-    do{
-        clrscr();
-        printf("\t\t\t\t\t===== Fingerprint ID =====\n");
-        printf("\t\t\t\t\t__________________________");
+  struct pass {
+    char firstName[20];
+    double nidNo;
+    char Class[10];
+    float per;
+};
 
-        fp = fopen("Pass_Info.txt", a);
-        printf("Please enter your fingerprint ID in the following bar.\n");
-        scanf("%s", &info.fid);
+void main(){
 
-        if(fp == NULL){
-            fprintf(stderr, "Can't open your information server.\nPlease contact your service provider.\n");
-        }
+    int choice;
 
-        else{
-            printf("\tYour record has been stored successfully.\n");
-        }
+    while(choice!=5){
 
-        fwrite(&info, sizeof(struct pass), 1, fp);
-        fclose(fp);
+    printf("\t\t\t=====PREPAID MANAGEMENT SYSTEM=====\n");
+    printf("\t\t\t___________________________________\n");
+    printf("\n\n\n\t\t\t\t     1. Add your transportation record\n");
+    printf("\t\t\t\t     2. Previous Records (Admin Only)\n");
+    printf("\t\t\t\t     3. Search yourself\n");
+    printf("\t\t\t\t     4. Delete record (Admin Only)\n");
+    printf("\t\t\t\t     5. Exit\n");
+    printf("\t\t\t\t    _____________________\n");
+    printf("\t\t\t\t     ");
+    scanf("%d", &choice);
 
-        printf("\tDo you want to try another turn to store your fingerprint ID?\n[Y/N]\n");
+    switch(choice){
 
-    }   while(or == Y || or == y)
-}
+        case 1:
+            clrscr();
+            addpass();
+            clrscr();
 
-int main(void){
+            break;
 
-float fid;
+        case 2:
+            clrscr();
+            record();
+            printf("\t\t\t\t  Press any key to exit...\n");
+            getch();
+            clrscr();
 
-addpass();
+            break;
 
+        case 3:
+            clrscr();
+            search();
+            printf("\n\t\t\t\t  Press any key to exit...\n");
+            getch();
+            clrscr();
 
-return 0;
+            break;
+
+        case 4:
+            clrscr();
+            delete();
+            printf("\n\t\t\t\tPress any key to exit...\n");
+            getch();
+            clrscr();
+
+            break;
+        case 5:
+            clrscr();
+            printf("\n\t\t\t\tThanks for using this software.\n\n");
+            exit(0);
+
+            break;
+
+     default :
+            clrscr();
+            getch();
+            printf("\n\t\t\t\t\tEnter a valid choice\n\n");
+            printf("\t\t\t\tPress any key to continue...");
+            getch();
+            clrscr();
+            break;
+    }
+
+    }
+
+    getch();
+
 }
