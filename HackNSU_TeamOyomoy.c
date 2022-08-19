@@ -13,12 +13,18 @@ void delete();
     char firstName[20];
     double nidNo;
     char loc[10], fid[20];
-
 };
 
 void main(){
 
-    int choice;
+    int choice; int se;
+    char arrfid[20];
+
+    printf("Please select your choice.\n1 => Departure\n2 => Arriving\n");
+    printf("Yourv choice => ");
+    scanf("%d", &se);
+
+    if(se == 1){
 
     while(choice!=5){
 
@@ -88,6 +94,18 @@ void main(){
 
     }
 
+    }
+
+    else if(se == 2){
+          printf("\n\n\t\t\tEnter your fingerprint ID in the following bar.");
+          printf("\n\t\t\t\t\t\t==========\n\t\t\t\t\t");
+          scanf("%s", &arrfid);
+          printf("\n\t\t\t\t\t\t==========\n");
+          printf("\n\t\t\t______________________________\n\n\n");
+          printf("You have travelled 'X' km during this journey.\nBDT 'Y' has been deducted from your assisted account.\nThanks for travelling!");
+          printf("\nCheck your SMS for confirmation.\n");
+    }
+
     getch();
 
 }
@@ -105,8 +123,8 @@ void main(){
        printf("\t\t\t\t____________________________________\n\n");
        fp=fopen("information.txt","a");
 
-          printf("\n\t\t\tEnter Name        : ");
-          scanf("%s",&info.firstName);
+          /*printf("\n\t\t\tEnter Name        : ");
+          scanf("%s",&info.firstName);*/
           printf("\n\t\t\tEnter NID number  : ");
           scanf("%lf",&info.nidNo);
           printf("\n\t\t\tEnter location    : ");
@@ -156,9 +174,10 @@ void main(){
 
         while(fread(&info, sizeof(struct pass), 1, fp)){
 
-        printf("\n\t\t\t\t Name     : %s", info.firstName);
+        //printf("\n\t\t\t\t Name     : %s", info.firstName);
         printf("\n\t\t\t\t NID no   : %.1lf", info.nidNo);
         printf("\n\t\t\t\t Location : %s",  info.loc);
+        printf("\n\t\t\t\t  : %s",  info.loc);
         printf("\n\t\t\t\t ________________________________\n");
 
         }
@@ -187,7 +206,7 @@ void search(){
 
         found = 1;
 
-        printf("\n\n\t\t\tName       : %s",info.firstName);
+        //printf("\n\n\t\t\tName       : %s",info.firstName);
         printf("\n\t\t\tNID Number : %lf",info.nidNo);
         printf("\n\t\t\tLocation   : %s",info.loc);
         printf("\n\t\t\t______________________________________\n");
